@@ -1,0 +1,295 @@
+{
+  "name": "can-atlas",
+  "displayName": "CAN Atlas",
+  "description": "CAN DBC workbench: outline, hover, problems, frame decode and encode, bit layout. Pro: DBC diff, trace decode, statistics, documentation. Works offline; only the licence check uses the network.",
+  "version": "0.1.0",
+  "publisher": "SmallStepsStudio",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "icon": "media/icon.png",
+  "pricing": "Trial",
+  "homepage": "https://github.com/small-steps-studio/can-atlas#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/small-steps-studio/can-atlas"
+  },
+  "bugs": {
+    "url": "https://github.com/small-steps-studio/can-atlas/issues"
+  },
+  "galleryBanner": {
+    "color": "#1b2a3a",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Visualization"
+  ],
+  "keywords": [
+    "dbc",
+    "can dbc",
+    "dbc file",
+    "dbc viewer",
+    "dbc checker",
+    "dbc diff",
+    "can bus",
+    "can database",
+    "can signal",
+    "can frame",
+    "can fd",
+    "candump",
+    "can log",
+    "trace decode",
+    "signal decoder",
+    "multiplexing",
+    "intel motorola",
+    "bit layout",
+    "automotive",
+    "ecu",
+    "embedded",
+    "vehicle network"
+  ],
+  "main": "./src/extension.js",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": {
+      "supported": "limited",
+      "description": "Decoding a trace file streams it from the local disk; in a virtual workspace a trace is read whole and is limited to 64 MB. Every other feature works in virtual workspaces."
+    }
+  },
+  "activationEvents": [
+    "onLanguage:dbc",
+    "workspaceContains:**/*.dbc"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.js",
+    "gate": "node scripts/release-gate.js",
+    "vscode:prepublish": "node scripts/release-gate.js --skip-tests",
+    "package": "npx --yes @vscode/vsce package --no-dependencies",
+    "package:local": "node scripts/package-local.js",
+    "check-vsix": "node scripts/check-vsix.js"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "dbc",
+        "aliases": ["DBC", "CAN DBC", "dbc"],
+        "extensions": [".dbc"],
+        "firstLine": "^VERSION\\s+\"",
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "dbc",
+        "scopeName": "source.dbc",
+        "path": "./syntaxes/dbc.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      { "command": "canAtlas.checkFile", "title": "CAN Atlas: Check Current File" },
+      { "command": "canAtlas.decodeFrame", "title": "CAN Atlas: Decode Frame" },
+      { "command": "canAtlas.encodeSignals", "title": "CAN Atlas: Encode Signals" },
+      { "command": "canAtlas.showBitLayout", "title": "CAN Atlas: Show Bit Layout" },
+      { "command": "canAtlas.goToMessage", "title": "CAN Atlas: Go To Message" },
+      { "command": "canAtlas.openSample", "title": "CAN Atlas: Open Sample DBC" },
+      { "command": "canAtlas.openSampleProblems", "title": "CAN Atlas: Open Sample DBC With Problems" },
+      { "command": "canAtlas.openSampleTrace", "title": "CAN Atlas: Open Sample Trace" },
+      { "command": "canAtlas.openWalkthrough", "title": "CAN Atlas: Open Getting Started Guide" },
+      { "command": "canAtlas.showDocumentation", "title": "CAN Atlas: Show Documentation" },
+      { "command": "canAtlas.reportProblem", "title": "CAN Atlas: Report A Problem" },
+      { "command": "canAtlas.refreshOutline", "title": "CAN Atlas: Refresh Outline", "icon": "$(refresh)" },
+      { "command": "canAtlas.revealOffset", "title": "CAN Atlas: Reveal In Editor" },
+      { "command": "canAtlas.revealChange", "title": "CAN Atlas: Reveal Change" },
+      { "command": "canAtlas.clearComparison", "title": "CAN Atlas: Clear Comparison", "icon": "$(clear-all)" },
+      { "command": "canAtlas.buyPro", "title": "CAN Atlas: Buy Pro" },
+      { "command": "canAtlas.enterKey", "title": "CAN Atlas: Enter Licence Key" },
+      { "command": "canAtlas.licenceStatus", "title": "CAN Atlas: Show Licence Status" },
+      { "command": "canAtlas.removeLicence", "title": "CAN Atlas: Remove Licence From This Machine" },
+      { "command": "canAtlas.compareFiles", "title": "CAN Atlas: Compare DBC With Another File (Pro)" },
+      { "command": "canAtlas.exportComparison", "title": "CAN Atlas: Export Comparison Report (Pro)", "icon": "$(export)" },
+      { "command": "canAtlas.showBitLayoutGraphic", "title": "CAN Atlas: Show Graphical Bit Layout (Pro)" },
+      { "command": "canAtlas.decodeTrace", "title": "CAN Atlas: Decode Trace With This DBC (Pro)" },
+      { "command": "canAtlas.exportTrace", "title": "CAN Atlas: Export Decoded Trace Or Statistics (Pro)" },
+      { "command": "canAtlas.createDocumentation", "title": "CAN Atlas: Create DBC Documentation (Pro)" },
+      { "command": "canAtlas.exportSignalsCsv", "title": "CAN Atlas: Export Signals As CSV (Pro)" },
+      { "command": "canAtlas.importSignalsCsv", "title": "CAN Atlas: Create DBC From Signal CSV (Pro)" },
+      { "command": "canAtlas.inventory", "title": "CAN Atlas: Create Workspace DBC Inventory (Pro)" }
+    ],
+    "submenus": [
+      { "id": "canAtlas.editorMenu", "label": "CAN Atlas" }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "canAtlas.revealOffset", "when": "false" },
+        { "command": "canAtlas.revealChange", "when": "false" },
+        { "command": "canAtlas.refreshOutline", "when": "false" }
+      ],
+      "editor/context": [
+        { "submenu": "canAtlas.editorMenu", "when": "editorLangId == dbc", "group": "canAtlas" }
+      ],
+      "canAtlas.editorMenu": [
+        { "command": "canAtlas.decodeFrame", "group": "1_tools@1" },
+        { "command": "canAtlas.encodeSignals", "group": "1_tools@2" },
+        { "command": "canAtlas.showBitLayout", "group": "1_tools@3" },
+        { "command": "canAtlas.checkFile", "group": "1_tools@4" },
+        { "command": "canAtlas.compareFiles", "group": "2_pro@1" },
+        { "command": "canAtlas.showBitLayoutGraphic", "group": "2_pro@2" },
+        { "command": "canAtlas.decodeTrace", "group": "2_pro@3" },
+        { "command": "canAtlas.createDocumentation", "group": "2_pro@4" },
+        { "command": "canAtlas.exportSignalsCsv", "group": "2_pro@5" }
+      ],
+      "explorer/context": [
+        { "command": "canAtlas.inventory", "when": "explorerResourceIsFolder", "group": "canAtlas@1" }
+      ],
+      "view/title": [
+        { "command": "canAtlas.refreshOutline", "when": "view == canAtlas.outline", "group": "navigation" },
+        { "command": "canAtlas.exportComparison", "when": "view == canAtlas.diff", "group": "navigation@1" },
+        { "command": "canAtlas.clearComparison", "when": "view == canAtlas.diff", "group": "navigation@2" }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        { "id": "canAtlas", "title": "CAN Atlas", "icon": "media/activity.svg" }
+      ]
+    },
+    "views": {
+      "canAtlas": [
+        { "id": "canAtlas.outline", "name": "DBC Outline", "contextualTitle": "CAN Atlas" },
+        { "id": "canAtlas.diff", "name": "DBC Comparison", "contextualTitle": "CAN Atlas" }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "canAtlas.outline",
+        "contents": "Open a DBC file to see its messages, signals, nodes and value tables here.\n[Open Sample DBC](command:canAtlas.openSample)\n[Open Sample DBC With Problems](command:canAtlas.openSampleProblems)\n[Getting Started Guide](command:canAtlas.openWalkthrough)"
+      },
+      {
+        "view": "canAtlas.diff",
+        "contents": "Compare two versions of a DBC file (Pro, included in the free 14-day trial). Every change is listed as breaking, non-breaking or cosmetic.\n[Compare DBC With Another File](command:canAtlas.compareFiles)"
+      }
+    ],
+    "walkthroughs": [
+      {
+        "id": "canAtlas.gettingStarted",
+        "title": "Get started with CAN Atlas",
+        "description": "Open a sample DBC file, read signals in a hover, find problems with their codes, decode and encode a frame and try the Pro tools in the free 14-day trial.",
+        "steps": [
+          {
+            "id": "canAtlas.step.openSample",
+            "title": "Open a sample DBC file",
+            "description": "CAN Atlas reads DBC files, the text format of CAN databases. Open the invented sample to follow along, or open one of your own files.\n[Open Sample DBC](command:canAtlas.openSample)",
+            "media": { "markdown": "media/walkthrough/open-sample.md" },
+            "completionEvents": ["onCommand:canAtlas.openSample"]
+          },
+          {
+            "id": "canAtlas.step.outline",
+            "title": "Read the outline and hover a signal",
+            "description": "The CAN Atlas view lists the messages with their signals, the nodes and the value tables. Rest the pointer on a signal to see its bits, byte order, scaling, unit, receivers and value descriptions.\n[Show the Outline](command:workbench.view.extension.canAtlas)",
+            "media": { "markdown": "media/walkthrough/outline.md" },
+            "completionEvents": ["onView:canAtlas.outline"]
+          },
+          {
+            "id": "canAtlas.step.problems",
+            "title": "Find problems",
+            "description": "Open the sample with problems: an overlap, a signal beyond the data length, a misspelt receiver, an inverted range, a duplicate ID and a missing extended-frame flag appear in the Problems view, each with a code.\n[Open Sample DBC With Problems](command:canAtlas.openSampleProblems)\n[Check Current File](command:canAtlas.checkFile)",
+            "media": { "markdown": "media/walkthrough/problems.md" },
+            "completionEvents": ["onCommand:canAtlas.openSampleProblems", "onCommand:canAtlas.checkFile"]
+          },
+          {
+            "id": "canAtlas.step.decode",
+            "title": "Decode and encode a frame",
+            "description": "Enter an ID and the data bytes of a frame and see every signal's raw and physical value, or enter physical values and get the bytes. Show Bit Layout draws the byte and bit grid of a message.\n[Decode Frame](command:canAtlas.decodeFrame)\n[Encode Signals](command:canAtlas.encodeSignals)\n[Show Bit Layout](command:canAtlas.showBitLayout)",
+            "media": { "markdown": "media/walkthrough/decode.md" },
+            "completionEvents": ["onCommand:canAtlas.decodeFrame", "onCommand:canAtlas.encodeSignals", "onCommand:canAtlas.showBitLayout"]
+          },
+          {
+            "id": "canAtlas.step.pro",
+            "title": "Try the Pro tools (14-day trial)",
+            "description": "Decode a whole trace file with a DBC, compare two versions of a DBC, draw the bit layout, or write documentation. The first Pro command starts a free 14-day trial on this computer; no key, account or network is needed.\n[Open Sample Trace](command:canAtlas.openSampleTrace)\n[Decode Trace With This DBC](command:canAtlas.decodeTrace)\n[Show Licence Status](command:canAtlas.licenceStatus)",
+            "media": { "markdown": "media/walkthrough/pro.md" },
+            "completionEvents": ["onCommand:canAtlas.decodeTrace", "onCommand:canAtlas.compareFiles", "onCommand:canAtlas.licenceStatus"]
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "CAN Atlas",
+      "properties": {
+        "canAtlas.maxFileSizeMB": {
+          "type": "number",
+          "default": 20,
+          "minimum": 0.1,
+          "maximum": 48,
+          "order": 1,
+          "markdownDescription": "Largest file, in megabytes, that is checked automatically and gets hovers, the outline and symbols. Larger files are checked on demand with **CAN Atlas: Check Current File**."
+        },
+        "canAtlas.maxProblems": {
+          "type": "integer",
+          "default": 1000,
+          "minimum": 1,
+          "maximum": 20000,
+          "order": 2,
+          "markdownDescription": "Largest number of problems listed per file."
+        },
+        "canAtlas.validateOnType": {
+          "type": "boolean",
+          "default": true,
+          "order": 3,
+          "markdownDescription": "Check DBC files while you type (after a short pause). Files above 2 MB are checked when opened and saved."
+        },
+        "canAtlas.hover.enabled": {
+          "type": "boolean",
+          "default": true,
+          "order": 4,
+          "markdownDescription": "Show bits, byte order, scaling, unit, receivers and value descriptions when the pointer rests on a signal, a message, a node or a value table."
+        },
+        "canAtlas.problems.disabledCodes": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^DBC-[A-Z0-9-]+$" },
+          "default": [],
+          "order": 5,
+          "markdownDescription": "Codes of problems that are not reported, for example `DBC-SIGNAL-NO-RECEIVER` or `DBC-NAME-LONG`. The codes are listed in the documentation."
+        },
+        "canAtlas.workspace.include": {
+          "type": "string",
+          "default": "**/*.dbc",
+          "order": 6,
+          "markdownDescription": "Glob pattern of the files that **Create Workspace DBC Inventory** (Pro) reads."
+        },
+        "canAtlas.workspace.exclude": {
+          "type": "string",
+          "default": "**/{node_modules,.git}/**",
+          "order": 7,
+          "markdownDescription": "Glob pattern of files and folders that the workspace inventory skips."
+        },
+        "canAtlas.workspace.maxFiles": {
+          "type": "integer",
+          "default": 2000,
+          "minimum": 1,
+          "maximum": 20000,
+          "order": 8,
+          "markdownDescription": "Largest number of DBC files the workspace inventory reads."
+        },
+        "canAtlas.trace.maxTableRows": {
+          "type": "integer",
+          "default": 100000,
+          "minimum": 1000,
+          "maximum": 1000000,
+          "order": 9,
+          "markdownDescription": "Largest number of decoded rows that **Decode Trace With This DBC** (Pro) keeps for the table. Statistics and exports always cover the whole trace; the table shows the first rows that match the filter."
+        },
+        "canAtlas.export.neutraliseFormulas": {
+          "type": "boolean",
+          "default": true,
+          "order": 10,
+          "markdownDescription": "In CSV exports (Pro), put an apostrophe before every cell that starts with `=`, `+`, `-`, `@`, a tab or a carriage return, so that a spreadsheet shows it as text instead of running it as a formula. Plain numbers such as `-12.5` are left alone. Turn off only when you need the exact values and open the files in a program that does not run formulas."
+        }
+      }
+    }
+  }
+}
