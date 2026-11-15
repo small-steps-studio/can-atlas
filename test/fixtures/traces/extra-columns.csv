@@ -1,0 +1,7 @@
+# Invented capture used by the tests
+index,timestamp,channel,id_format,id,dlc,extended,data,comment
+1,10.000000,bus-a,dec,256,8,0,401F72FA8E01103C,"engine, running"
+2,10.010000,bus-a,dec,419385573,8,1,C2FF480E5A02FFFF,charger
+3,10.020000,bus-b,hex,120,4,0,380BB85F,
+4,10.030000,bus-b,hex,7F0,1,0,21,"said ""ok"""
+5,10.040000,bus-a,dec,256,8,,601F72FA001E10D0,standard by value

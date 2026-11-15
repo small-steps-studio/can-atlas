@@ -1,0 +1,6 @@
+time,channel,id,data
+1.000000,"=HYPERLINK(""http://example.invalid/x"",""y"")",100,401F72FA8E01103C
+2.000000,+cmd,120,380BB85F
+3.000000,-2+3,7F0,21
+4.000000,@SUM(A1),7F0,12
+5.000000,"line one
