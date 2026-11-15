@@ -1,0 +1,69 @@
+VERSION "1"
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Ecu1 Ecu2
+
+BO_ 1 MxA: 8 Ecu1
+ SG_ Sel M : 0|4@1+ (1,0) [0|15] "" Ecu2
+ SG_ P m0 : 8|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 2 MxB: 8 Ecu1
+ SG_ Sel M : 0|4@1+ (1,0) [0|15] "" Ecu2
+ SG_ Q m3 : 8|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 3 MxC: 8 Ecu1
+ SG_ Sel M : 0|4@1+ (1,0) [0|15] "" Ecu2
+ SG_ R m3 : 8|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 4 MxD: 8 Ecu1
+ SG_ Sel M : 0|4@1+ (1,0) [0|15] "" Ecu2
+ SG_ T m1 : 8|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 5 MxE: 8 Ecu1
+ SG_ U : 0|8@1+ (1,0) [0|255] "" Ecu2
+ SG_ Sel2 M : 8|4@1+ (1,0) [0|15] "" Ecu2
+
+BO_ 6 MxF: 8 Ecu1
+ SG_ V m2 : 0|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 7 MxG: 8 Ecu1
+ SG_ Sel M : 0|2@1+ (1,0) [0|3] "" Ecu2
+ SG_ W m9 : 8|8@1+ (1,0) [0|255] "" Ecu2
+
+SG_MUL_VAL_ 1 P Nope 0-0;
+SG_MUL_VAL_ 2 Q Sel 5-4;
+SG_MUL_VAL_ 3 R Sel 5-6;
+SG_MUL_VAL_ 4 T Sel 1-1;
+SG_MUL_VAL_ 4 T Sel 2-2;
+SG_MUL_VAL_ 5 U Sel2 0-0;

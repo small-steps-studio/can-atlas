@@ -1,0 +1,731 @@
+{
+  "note": "Written by test/helpers/gen-dbc.js --build. Counts and problem codes are written by hand from the design of each file.",
+  "files": [
+    {
+      "file": "01-minimal.dbc",
+      "description": "Smallest useful file: no NS_ block, two nodes, one message with one signal.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 75
+    },
+    {
+      "file": "02-classic-header.dbc",
+      "description": "Classic header with the full NS_ list, a value table that a signal uses, comments on every kind of object.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 780
+    },
+    {
+      "file": "03-intel-basic.dbc",
+      "description": "Little-endian signals: byte-aligned, nibbles, a 32-bit signal, and signals that cross byte boundaries at odd bits.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 10,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 825
+    },
+    {
+      "file": "04-motorola-basic.dbc",
+      "description": "Big-endian signals: start bit 7 length 16, start bit 0 length 8, a 20-bit signal over three bytes, byte 7, nibbles.",
+      "encoding": "utf-8",
+      "messages": 4,
+      "signals": 8,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 767
+    },
+    {
+      "file": "05-bit-signals.dbc",
+      "description": "One-bit signals in both byte orders, at the edges of bytes.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 6,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 605
+    },
+    {
+      "file": "06-wide-signals.dbc",
+      "description": "Signals of 63 and 64 bits in both byte orders, signed and unsigned, and a 64-bit signal with an exact decimal factor.",
+      "encoding": "utf-8",
+      "messages": 6,
+      "signals": 6,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 902
+    },
+    {
+      "file": "07-signed-values.dbc",
+      "description": "Signed signals of 8, 12, 16, 32 and 64 bits, little and big endian, a negative factor, negative offsets.",
+      "encoding": "utf-8",
+      "messages": 3,
+      "signals": 8,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 840
+    },
+    {
+      "file": "08-exact-decimals.dbc",
+      "description": "Factors and offsets that binary floating point cannot hold: 0.001, 0.1, 1e-05, 0.00390625, 0.3, 0.07, 1e12, -273.15.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 9,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 889
+    },
+    {
+      "file": "09-float-signals.dbc",
+      "description": "Floating point signals (value type 1 and 2), little and big endian.",
+      "encoding": "utf-8",
+      "messages": 3,
+      "signals": 5,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 796
+    },
+    {
+      "file": "10-float-scaled.dbc",
+      "description": "Floating point signals with a factor and an offset.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 2,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 560
+    },
+    {
+      "file": "11-value-tables.dbc",
+      "description": "Value descriptions: negative values, 64-bit values, an entry for a signed signal written as an unsigned bit pattern (reported).",
+      "encoding": "utf-8",
+      "messages": 3,
+      "signals": 4,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-VALUE-OUTSIDE-RAW"
+      ],
+      "noErrors": true,
+      "bytes": 867
+    },
+    {
+      "file": "12-value-escapes-duplicates.dbc",
+      "description": "Escapes inside descriptions, a repeated raw value, a second VAL_ for one signal, a table with a repeated value, a table defined twice, tables nothing uses.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-VAL-DUPLICATE",
+        "DBC-VAL-DUPLICATE",
+        "DBC-VAL-DUPLICATE",
+        "DBC-VALUE-TABLE-DUPLICATE",
+        "DBC-VALUE-TABLE-UNUSED",
+        "DBC-VALUE-TABLE-UNUSED"
+      ],
+      "noErrors": true,
+      "bytes": 705
+    },
+    {
+      "file": "13-multiplex-simple.dbc",
+      "description": "Simple multiplexing: one multiplexor, signals for value 0 and value 1 on the same bits, a signal in every frame.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 5,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 599
+    },
+    {
+      "file": "14-multiplex-eight.dbc",
+      "description": "A 3-bit multiplexor with eight values, each selecting one signal on the same byte.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 9,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 760
+    },
+    {
+      "file": "15-multiplex-extended-simple.dbc",
+      "description": "Extended multiplexing with ranges of multiplexor values (SG_MUL_VAL_).",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 4,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 642
+    },
+    {
+      "file": "16-multiplex-extended-nested.dbc",
+      "description": "A multiplexor that is itself multiplexed (m1M), with signals selected by either level.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 6,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 748
+    },
+    {
+      "file": "17-multiplex-three-level.dbc",
+      "description": "Three levels of multiplexors: M0 selects M1 selects M2 selects a signal.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 5,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 699
+    },
+    {
+      "file": "18-mux-ambiguous.dbc",
+      "description": "Two multiplexors and a multiplexed signal without SG_MUL_VAL_: it is not clear which one selects it.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-MUX-AMBIGUOUS",
+        "DBC-MUX-UNUSED",
+        "DBC-MUX-UNUSED"
+      ],
+      "noErrors": false,
+      "bytes": 512
+    },
+    {
+      "file": "19-mux-float-switch.dbc",
+      "description": "A multiplexor that is a 32-bit float cannot select by value.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 2,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-MUX-SWITCH-FLOAT"
+      ],
+      "noErrors": false,
+      "bytes": 495
+    },
+    {
+      "file": "20-mux-loop.dbc",
+      "description": "Two multiplexors that select each other, and a signal below them.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-MUX-CYCLE",
+        "DBC-MUX-CYCLE"
+      ],
+      "noErrors": false,
+      "bytes": 585
+    },
+    {
+      "file": "21-mux-bad-extended.dbc",
+      "description": "Seven small messages, each with one multiplexing mistake.",
+      "encoding": "utf-8",
+      "messages": 7,
+      "signals": 13,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-MUX-EXTENDED-DUPLICATE",
+        "DBC-MUX-EXTENDED-MISMATCH",
+        "DBC-MUX-EXTENDED-RANGE",
+        "DBC-MUX-EXTENDED-UNKNOWN",
+        "DBC-MUX-NO-MULTIPLEXOR",
+        "DBC-MUX-NOT-MULTIPLEXED",
+        "DBC-MUX-UNUSED",
+        "DBC-MUX-UNUSED",
+        "DBC-MUX-UNUSED",
+        "DBC-MUX-VALUE-RANGE"
+      ],
+      "noErrors": false,
+      "bytes": 1173
+    },
+    {
+      "file": "22-extended-ids.dbc",
+      "description": "Standard and 29-bit identifiers: bit 31 of the written ID marks an extended frame; both ends of each range.",
+      "encoding": "utf-8",
+      "messages": 5,
+      "signals": 6,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 952
+    },
+    {
+      "file": "23-id-flag-mistakes.dbc",
+      "description": "Identifier mistakes: 0x800 without the extended flag, a flagged ID above 29 bits, an ID above 32 bits, frame format attributes that disagree with the ID.",
+      "encoding": "utf-8",
+      "messages": 7,
+      "signals": 7,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-MESSAGE-EXTENDED-FLAG",
+        "DBC-MESSAGE-FRAME-FORMAT",
+        "DBC-MESSAGE-FRAME-FORMAT",
+        "DBC-MESSAGE-ID-RANGE",
+        "DBC-MESSAGE-ID-RANGE"
+      ],
+      "noErrors": false,
+      "bytes": 996
+    },
+    {
+      "file": "24-dlc-values.dbc",
+      "description": "Data lengths 0, 8, 9 (not a frame length), 12, 24, 64 and 65 (too long); signals in the upper bytes of the long frames.",
+      "encoding": "utf-8",
+      "messages": 7,
+      "signals": 8,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-MESSAGE-DLC",
+        "DBC-MESSAGE-DLC-FD",
+        "DBC-MESSAGE-NO-SIGNALS"
+      ],
+      "noErrors": false,
+      "bytes": 864
+    },
+    {
+      "file": "25-comments.dbc",
+      "description": "Comments on the network, a node, a message and signals, with quotes, semicolons and line breaks inside.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 703
+    },
+    {
+      "file": "26-attributes.dbc",
+      "description": "Attribute definitions of every type (INT, HEX, FLOAT, STRING, ENUM) for the network, nodes, messages and signals, with defaults and values.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 1166
+    },
+    {
+      "file": "27-attributes-bad.dbc",
+      "description": "Attribute mistakes: duplicate definition, undefined attribute, wrong object type, unknown object, values outside the definition.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-ATTRIBUTE-DUPLICATE-DEF",
+        "DBC-ATTRIBUTE-OBJECT-TYPE",
+        "DBC-ATTRIBUTE-UNDEFINED",
+        "DBC-ATTRIBUTE-UNDEFINED",
+        "DBC-ATTRIBUTE-UNKNOWN-OBJECT",
+        "DBC-ATTRIBUTE-VALUE",
+        "DBC-ATTRIBUTE-VALUE",
+        "DBC-ATTRIBUTE-VALUE",
+        "DBC-ATTRIBUTE-VALUE",
+        "DBC-ATTRIBUTE-VALUE"
+      ],
+      "noErrors": true,
+      "bytes": 792
+    },
+    {
+      "file": "28-transmitters.dbc",
+      "description": "An extra transmitter, a message without a sending node, a signal that only Vector__XXX receives, and two bad BO_TX_BU_ statements.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 2,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-SENDER-UNKNOWN",
+        "DBC-SIGNAL-NO-RECEIVER",
+        "DBC-TRANSMITTER-UNKNOWN-MESSAGE"
+      ],
+      "noErrors": true,
+      "bytes": 539
+    },
+    {
+      "file": "29-independent-signals.dbc",
+      "description": "The pseudo message VECTOR__INDEPENDENT_SIG_MSG that holds signals without a message.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 539
+    },
+    {
+      "file": "30-env-vars-passed-over.dbc",
+      "description": "Statements that are read over without interpretation: EV_, ENVVAR_DATA_, SIG_GROUP_, relation attributes; and signal types, one with a missing value table.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-VALUE-TABLE-MISSING"
+      ],
+      "noErrors": true,
+      "bytes": 858
+    },
+    {
+      "file": "31-line-ends-lf.dbc",
+      "description": "The same small database with LF line ends.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 246
+    },
+    {
+      "file": "32-line-ends-crlf.dbc",
+      "description": "The same small database with CRLF line ends.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 262
+    },
+    {
+      "file": "33-line-ends-cr.dbc",
+      "description": "The same small database with lone CR line ends.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 246
+    },
+    {
+      "file": "34-bom-utf8.dbc",
+      "description": "The same small database with a UTF-8 byte order mark.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 249
+    },
+    {
+      "file": "35-windows-1252.dbc",
+      "description": "Bytes in Windows-1252: the degree sign is the single byte 0xB0 and e-acute the byte 0xE9; not valid UTF-8.",
+      "encoding": "windows-1252",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 453
+    },
+    {
+      "file": "36-utf8-text.dbc",
+      "description": "UTF-8 text with a degree sign, accented letters and other non-ASCII characters in a unit and a comment.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 476
+    },
+    {
+      "file": "37-utf16le-bom.dbc",
+      "description": "The same kind of database saved as UTF-16 little endian with a byte order mark.",
+      "encoding": "utf-16le",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 908
+    },
+    {
+      "file": "38-replacement-char.dbc",
+      "description": "A comment that already holds the replacement character U+FFFD (a file saved after a wrong encoding guess).",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-ENCODING"
+      ],
+      "noErrors": true,
+      "bytes": 453
+    },
+    {
+      "file": "39-missing-semicolons.dbc",
+      "description": "Five statements without their closing semicolon, each followed by another statement or the end of the file.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-SEMICOLON",
+        "DBC-SEMICOLON",
+        "DBC-SEMICOLON",
+        "DBC-SEMICOLON",
+        "DBC-SEMICOLON"
+      ],
+      "noErrors": true,
+      "bytes": 192
+    },
+    {
+      "file": "40-unterminated-strings.dbc",
+      "description": "A unit string and a comment string that never close.",
+      "encoding": "utf-8",
+      "messages": 3,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-SEMICOLON",
+        "DBC-SIGNAL-NO-RECEIVER",
+        "DBC-STRING-UNTERMINATED",
+        "DBC-STRING-UNTERMINATED"
+      ],
+      "noErrors": false,
+      "bytes": 214
+    },
+    {
+      "file": "41-unknown-statements.dbc",
+      "description": "A line of garbage where a statement should start, and two statements with unknown keywords.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-SYNTAX",
+        "DBC-UNKNOWN-STATEMENT",
+        "DBC-UNKNOWN-STATEMENT"
+      ],
+      "noErrors": false,
+      "bytes": 123
+    },
+    {
+      "file": "42-signal-before-message.dbc",
+      "description": "Signal lines that do not follow a message line: before the first message, and after a comment.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 2,
+      "expectCodes": [
+        "DBC-SIGNAL-WITHOUT-MESSAGE",
+        "DBC-SIGNAL-WITHOUT-MESSAGE"
+      ],
+      "noErrors": false,
+      "bytes": 146
+    },
+    {
+      "file": "43-garbage-lines.dbc",
+      "description": "Four lines of garbage between valid statements.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-SYNTAX",
+        "DBC-SYNTAX",
+        "DBC-SYNTAX",
+        "DBC-SYNTAX"
+      ],
+      "noErrors": false,
+      "bytes": 175
+    },
+    {
+      "file": "44-empty.dbc",
+      "description": "An empty file.",
+      "encoding": "utf-8",
+      "messages": 0,
+      "signals": 0,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 0
+    },
+    {
+      "file": "45-only-comments.dbc",
+      "description": "A file that holds a version and comments only.",
+      "encoding": "utf-8",
+      "messages": 0,
+      "signals": 0,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 74
+    },
+    {
+      "file": "46-long-names.dbc",
+      "description": "A node of 40 characters, a message of 33, a signal of 64 and a message of exactly 32 (no note).",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 2,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-NAME-LONG",
+        "DBC-NAME-LONG",
+        "DBC-NAME-LONG"
+      ],
+      "noErrors": true,
+      "bytes": 709,
+      "checks": {
+        "long33": 33,
+        "long64": 64,
+        "long40": 40,
+        "exact32": 32
+      }
+    },
+    {
+      "file": "47-names-invalid.dbc",
+      "description": "Names that are not valid DBC identifiers: a hyphen, a leading digit.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-NAME-INVALID",
+        "DBC-NAME-INVALID",
+        "DBC-NAME-INVALID"
+      ],
+      "noErrors": false,
+      "bytes": 431
+    },
+    {
+      "file": "48-names-case.dbc",
+      "description": "Names that differ only in case: nodes, messages, signals.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-NAME-CASE",
+        "DBC-NAME-CASE",
+        "DBC-NAME-CASE"
+      ],
+      "noErrors": true,
+      "bytes": 542
+    },
+    {
+      "file": "49-duplicates.dbc",
+      "description": "A node listed twice, a signal name used twice, two messages with the same ID, two with the same name, an unknown sender and an unknown receiver.",
+      "encoding": "utf-8",
+      "messages": 3,
+      "signals": 4,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-MESSAGE-ID-DUPLICATE",
+        "DBC-MESSAGE-NAME-DUPLICATE",
+        "DBC-NODE-DUPLICATE",
+        "DBC-RECEIVER-UNKNOWN",
+        "DBC-SENDER-UNKNOWN",
+        "DBC-SIGNAL-NAME-DUPLICATE"
+      ],
+      "noErrors": false,
+      "bytes": 550
+    },
+    {
+      "file": "50-layout-errors.dbc",
+      "description": "Layout and number mistakes, one message for each group: overlap, outside the frame, length, factor 0, inverted range, range beyond the raw bits, unreadable number, float length, value outside the raw range.",
+      "encoding": "utf-8",
+      "messages": 5,
+      "signals": 13,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-FACTOR-ZERO",
+        "DBC-NUMBER",
+        "DBC-RANGE-INVERTED",
+        "DBC-RANGE-OUTSIDE-RAW",
+        "DBC-SIGNAL-LENGTH",
+        "DBC-SIGNAL-LENGTH",
+        "DBC-SIGNAL-OUTSIDE-FRAME",
+        "DBC-SIGNAL-OUTSIDE-FRAME",
+        "DBC-SIGNAL-OVERLAP",
+        "DBC-VALTYPE-INVALID",
+        "DBC-VALTYPE-INVALID",
+        "DBC-VALTYPE-UNKNOWN",
+        "DBC-VALUE-OUTSIDE-RAW"
+      ],
+      "noErrors": false,
+      "bytes": 1098
+    },
+    {
+      "file": "51-references-unknown.dbc",
+      "description": "Statements that name a message, signal or node that does not exist.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-COMMENT-UNKNOWN",
+        "DBC-COMMENT-UNKNOWN",
+        "DBC-COMMENT-UNKNOWN",
+        "DBC-MUX-EXTENDED-UNKNOWN",
+        "DBC-MUX-EXTENDED-UNKNOWN",
+        "DBC-VAL-UNKNOWN-MESSAGE",
+        "DBC-VAL-UNKNOWN-SIGNAL",
+        "DBC-VALTYPE-UNKNOWN"
+      ],
+      "noErrors": true,
+      "bytes": 583
+    },
+    {
+      "file": "52-value-not-whole.dbc",
+      "description": "A value description for a raw value that is not a whole number.",
+      "encoding": "utf-8",
+      "messages": 1,
+      "signals": 1,
+      "orphans": 0,
+      "expectCodes": [
+        "DBC-VALUE-NOT-WHOLE"
+      ],
+      "noErrors": true,
+      "bytes": 435
+    },
+    {
+      "file": "53-synthetic-300.dbc",
+      "description": "About 300 messages built from a fixed seed by the helper generateDbc in this folder: mixed byte orders, extended IDs, multiplexed messages, value tables, attributes, comments.",
+      "encoding": "utf-8",
+      "messages": 300,
+      "signals": 1762,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 135242,
+      "builder": "generateDbc({ messages: 300, signalsPerMessage: 6, seed: 20261112, nodes: 12, version: \"synthetic-300\" })"
+    },
+    {
+      "file": "54-spacing-and-tabs.dbc",
+      "description": "Valid statements written with tabs, extra spaces, no indent, blank lines between signals and spaces inside the brackets.",
+      "encoding": "utf-8",
+      "messages": 2,
+      "signals": 3,
+      "orphans": 0,
+      "expectCodes": [],
+      "noErrors": true,
+      "bytes": 207
+    }
+  ]
+}

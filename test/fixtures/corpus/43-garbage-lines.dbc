@@ -1,0 +1,11 @@
+VERSION "1"
+BU_: A B
+(((garbage
+BO_ 100 M: 8 A
+ SG_ S : 0|8@1+ (1,0) [0|255] "" B
+"stray string"
+CM_ "ok";
+||| pipes
+BA_DEF_ BO_ "Cyc" INT 0 100;
+: colon
+BA_ "Cyc" BO_ 100 5;

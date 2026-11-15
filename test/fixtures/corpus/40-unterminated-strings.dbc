@@ -1,0 +1,9 @@
+VERSION "1.0"
+BU_: A B
+BO_ 100 M1: 8 A
+ SG_ S1 : 0|8@1+ (1,0) [0|255] "km/h B
+BO_ 101 M2: 8 A
+ SG_ S2 : 0|8@1+ (1,0) [0|255] "" B
+CM_ "this comment never closes;
+BO_ 102 M3: 8 B
+ SG_ S3 : 0|8@1+ (1,0) [0|255] "" A

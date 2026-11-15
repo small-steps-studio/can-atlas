@@ -1,0 +1,49 @@
+VERSION "1"
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Ecu1 Ecu2
+
+BO_ 1280 Signed1: 8 Ecu1
+ SG_ S8 : 0|8@1- (1,0) [-128|127] "" Ecu2
+ SG_ S12 : 8|12@1- (0.5,-10) [-1034|1013.5] "" Ecu2
+ SG_ S16 : 24|16@1- (1,0) [-32768|32767] "" Ecu2
+
+BO_ 1281 Signed32: 8 Ecu1
+ SG_ S32I : 0|32@1- (1,0) [-2147483648|2147483647] "" Ecu2
+ SG_ S32M : 39|32@0- (1,0) [-2147483648|2147483647] "" Ecu2
+
+BO_ 1282 NegFactor: 8 Ecu1
+ SG_ NF : 0|8@1+ (-0.5,100) [-27.5|100] "" Ecu2
+ SG_ NF2 : 8|8@1- (-1,0) [-127|128] "" Ecu2
+ SG_ NO : 16|8@1+ (1,-40) [-40|215] "degC" Ecu2

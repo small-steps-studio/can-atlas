@@ -1,0 +1,63 @@
+VERSION "1"
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Ecu1 Ecu2
+
+BO_ 100 L100: 2 Ecu1
+ SG_ A : 0|8@1+ (1,0) [0|255] "" Ecu2
+ SG_ B : 4|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 101 L101: 4 Ecu1
+ SG_ C : 24|16@1+ (1,0) [0|65535] "" Ecu2
+ SG_ D : 31|16@0+ (1,0) [0|65535] "" Ecu2
+ SG_ E : 8|0@1+ (1,0) [0|0] "" Ecu2
+ SG_ F : 8|65@1+ (1,0) [0|36893488147419103231] "" Ecu2
+
+BO_ 102 L102: 4 Ecu1
+ SG_ G : 0|8@1+ (0,0) [0|15] "" Ecu2
+ SG_ H : 8|8@1+ (1,0) [10|5] "" Ecu2
+ SG_ I : 16|4@1+ (1,0) [0|20] "" Ecu2
+ SG_ J : 24|8@1+ (1e999,0) [0|1] "" Ecu2
+
+BO_ 103 L103: 8 Ecu1
+ SG_ K : 0|16@1+ (1,0) [0|65535] "" Ecu2
+ SG_ L : 16|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 104 L104: 2 Ecu1
+ SG_ M : 0|8@1+ (1,0) [0|255] "" Ecu2
+
+SIG_VALTYPE_ 103 K : 1;
+SIG_VALTYPE_ 103 Nope : 1;
+SIG_VALTYPE_ 103 L : 7;
+VAL_ 104 M 300 "big" 0 "zero" ;

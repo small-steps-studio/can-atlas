@@ -1,0 +1,57 @@
+VERSION "1"
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Ecu1 Ecu2
+
+BO_ 2566844672 ExtA: 8 Ecu1
+ SG_ E1 : 0|16@1+ (1,0) [0|65535] "" Ecu2
+ SG_ E2 : 16|16@1+ (1,0) [0|65535] "" Ecu2
+
+BO_ 2147483649 ExtMin: 8 Ecu1
+ SG_ E3 : 0|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 2684354559 ExtMax: 8 Ecu1
+ SG_ E4 : 0|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 2047 StdMax: 8 Ecu1
+ SG_ E5 : 0|8@1+ (1,0) [0|255] "" Ecu2
+
+BO_ 0 StdZero: 8 Ecu1
+ SG_ E6 : 0|8@1+ (1,0) [0|255] "" Ecu2
+
+BA_DEF_ BO_ "VFrameFormat" ENUM "StandardCAN","ExtendedCAN";
+BA_DEF_DEF_ "VFrameFormat" "StandardCAN";
+BA_ "VFrameFormat" BO_ 2566844672 1;
+BA_ "VFrameFormat" BO_ 2147483649 1;
+BA_ "VFrameFormat" BO_ 2684354559 1;

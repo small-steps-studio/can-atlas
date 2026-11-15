@@ -1,0 +1,16 @@
+﻿VERSION "2.1"
+
+NS_ :
+
+BS_:
+
+BU_: Alpha Beta
+
+BO_ 100 Pair: 8 Alpha
+ SG_ One : 0|8@1+ (1,0) [0|255] "" Beta
+ SG_ Two : 8|8@1+ (1,0) [0|255] "" Beta
+
+BO_ 101 Solo: 4 Beta
+ SG_ Three : 0|16@1+ (0.5,0) [0|32767.5] "u" Alpha
+
+CM_ BO_ 100 "A comment";

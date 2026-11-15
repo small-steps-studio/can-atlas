@@ -1,0 +1,49 @@
+VERSION "1"
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Ecu1 Ecu2
+
+VAL_TABLE_ T 1 "a" 1 "b" ;
+VAL_TABLE_ U 0 "z" ;
+VAL_TABLE_ U 1 "w" ;
+
+BO_ 1040 Esc: 8 Ecu1
+ SG_ A : 0|8@1+ (1,0) [0|255] "" Ecu2
+ SG_ B : 8|8@1+ (1,0) [0|255] "" Ecu2
+ SG_ C : 16|8@1+ (1,0) [0|255] "" Ecu2
+
+VAL_ 1040 A 0 "Say \"zero\"" 1 "back\\slash" 2 "semi;colon" ;
+VAL_ 1040 B 1 "one" 1 "uno" 2 "two" ;
+VAL_ 1040 C 0 "x" ;
+VAL_ 1040 C 1 "y" ;

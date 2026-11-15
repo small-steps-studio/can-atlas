@@ -1,0 +1,55 @@
+VERSION "1"
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: A B
+
+BO_ 100 M: 8 A
+ SG_ S : 0|8@1+ (1,0) [0|255] "" B
+
+BA_DEF_ BO_ "Prio" INT 0 7;
+BA_DEF_ BO_ "Prio" INT 0 7;
+BA_DEF_ SG_ "Gain" FLOAT 0 10;
+BA_DEF_ "Mode" ENUM "A","B";
+BA_DEF_ "Label" STRING ;
+BA_DEF_ BO_ "Mask" HEX 0 255;
+BA_DEF_DEF_ "Prio" 0;
+BA_DEF_DEF_ "Ghost" 5;
+BA_DEF_DEF_ "Mode" "C";
+BA_ "Prio" BO_ 100 9;
+BA_ "Prio" BO_ 999 3;
+BA_ "Gain" SG_ 100 S 11.5;
+BA_ "Gain" BO_ 100 1;
+BA_ "Unknown" 5;
+BA_ "Label" 5;
+BA_ "Mask" BO_ 100 1.5;

@@ -1,0 +1,10 @@
+BU_: A B
+
+BO_ 100 M: 8 A
+ SG_ S : 0|8@1+ (1,0) [0|255] "" B
+
+CM_ SG_ 100 S "no semicolon here"
+BA_DEF_ BO_ "Cyc" INT 0 100
+BA_DEF_DEF_ "Cyc" 0
+BA_ "Cyc" BO_ 100 10
+VAL_ 100 S 0 "zero" 1 "one"

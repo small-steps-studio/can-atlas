@@ -1,0 +1,49 @@
+VERSION "1"
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Ecu1 Ecu2
+
+BO_ 257 IntelBasic: 8 Ecu1
+ SG_ A : 0|8@1+ (1,0) [0|255] "" Ecu2
+ SG_ B : 8|16@1+ (0.5,0) [0|32767.5] "u" Ecu2
+ SG_ C : 24|4@1+ (1,0) [0|15] "" Ecu2
+ SG_ D : 28|4@1+ (1,0) [0|15] "" Ecu2
+ SG_ E : 32|32@1+ (1,0) [0|4294967295] "" Ecu2
+
+BO_ 258 IntelOdd: 8 Ecu1
+ SG_ X1 : 5|9@1+ (1,0) [0|511] "" Ecu2
+ SG_ X2 : 14|11@1+ (1,0) [0|2047] "" Ecu2
+ SG_ X3 : 25|7@1+ (1,0) [0|127] "" Ecu2
+ SG_ X4 : 32|13@1+ (1,0) [0|8191] "" Ecu2
+ SG_ X5 : 45|19@1+ (1,0) [0|524287] "" Ecu2

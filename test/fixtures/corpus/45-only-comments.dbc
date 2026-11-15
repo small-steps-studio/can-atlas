@@ -1,0 +1,4 @@
+VERSION "0"
+
+CM_ "First comment.";
+CM_ "Second comment with a ; inside.";

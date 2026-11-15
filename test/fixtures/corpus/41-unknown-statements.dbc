@@ -1,0 +1,8 @@
+VERSION "1"
+BU_: A B
+@@@ not a statement
+BO_ 100 M: 8 A
+ SG_ S : 0|8@1+ (1,0) [0|255] "" B
+FOO_BAR 12 34;
+CM_ "ok";
+WIBBLE

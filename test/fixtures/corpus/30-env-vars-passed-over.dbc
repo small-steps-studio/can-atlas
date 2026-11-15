@@ -1,0 +1,51 @@
+VERSION "1"
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: A B
+
+VAL_TABLE_ SpeedTable 0 "slow" 1 "fast" ;
+
+BO_ 100 M: 8 A
+ SG_ S : 0|8@1+ (1,0) [0|255] "" B
+
+EV_ EnvTemp: 0 [-40|85] "degC" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+ENVVAR_DATA_ EnvTemp: 8;
+SGTYPE_ st1 : 8@1+ (1,0) [0|255] "km/h" 0,SpeedTable;
+SGTYPE_ st2 : 8@1+ (1,0) [0|255] "km/h" 0,NoSuchTable;
+SIG_GROUP_ 100 Grp 1 : S;
+BA_DEF_REL_ BU_SG_REL_ "RelAttr" STRING ;
+BU_SG_REL_ A SG_ 100 S;
+BA_REL_ "RelAttr" BU_SG_REL_ A SG_ 100 S "x";
+CM_ EV_ EnvTemp "Temperature outside.";
+VAL_ EnvTemp 0 "cold" 1 "warm" ;
