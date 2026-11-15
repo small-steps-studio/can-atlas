@@ -17,7 +17,9 @@ const M = require('../src/dbc/mux');
 const U = require('../src/util');
 const H = require('./helpers/hostile');
 
-const LIMIT_MS = 5000;
+// Hosted CI runners are up to about three times slower than a desktop (6.2 s measured on a Windows runner for
+// a case that takes 2.9 s locally), so the budget is wider there. It still catches any super-linear blow-up.
+const LIMIT_MS = process.env.CI ? 15000 : 5000;
 const ROOT = path.join(__dirname, '..');
 const HEAD = 'VERSION ""\n\nBS_:\n\nBU_: A B\n\n';
 
